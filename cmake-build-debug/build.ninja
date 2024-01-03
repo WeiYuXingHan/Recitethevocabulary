@@ -51,8 +51,22 @@ build cmake_object_order_depends_target_untitled2: phony || CMakeFiles/untitled2
 
 build CMakeFiles/untitled2.dir/main.c.obj: C_COMPILER__untitled2_unscanned_Debug E$:/untitled2/main.c || cmake_object_order_depends_target_untitled2
   DEP_FILE = CMakeFiles\untitled2.dir\main.c.obj.d
-  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
-  INCLUDES = -IE:/cproject/msys64/mingw64/bin/../include/gtk-4.0 -IE:/cproject/msys64/mingw64/bin/../include/pango-1.0 -IE:/cproject/msys64/mingw64/bin/../include/glib-2.0 -IE:/cproject/msys64/mingw64/bin/../lib/glib-2.0/include -IE:/cproject/msys64/mingw64/bin/../include/harfbuzz -IE:/cproject/msys64/mingw64/bin/../include/freetype2 -IE:/cproject/msys64/mingw64/bin/../include/libpng16 -IE:/cproject/msys64/mingw64/bin/../include/fribidi -IE:/cproject/msys64/mingw64/bin/../include/cairo -IE:/cproject/msys64/mingw64/bin/../include/lzo -IE:/cproject/msys64/mingw64/bin/../include/pixman-1 -IE:/cproject/msys64/mingw64/bin/../include/gdk-pixbuf-2.0 -IE:/cproject/msys64/mingw64/bin/../include/graphene-1.0 -IE:/cproject/msys64/mingw64/bin/../lib/graphene-1.0/include
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IE:/cproject/msys64/mingw64/bin/../include/gtk-4.0 -IE:/cproject/msys64/mingw64/bin/../include/pango-1.0 -IE:/cproject/msys64/mingw64/bin/../include/glib-2.0 -IE:/cproject/msys64/mingw64/bin/../lib/glib-2.0/include -IE:/cproject/msys64/mingw64/bin/../include/harfbuzz -IE:/cproject/msys64/mingw64/bin/../include/freetype2 -IE:/cproject/msys64/mingw64/bin/../include/libpng16 -IE:/cproject/msys64/mingw64/bin/../include/fribidi -IE:/cproject/msys64/mingw64/bin/../include/cairo -IE:/cproject/msys64/mingw64/bin/../include/lzo -IE:/cproject/msys64/mingw64/bin/../include/pixman-1 -IE:/cproject/msys64/mingw64/bin/../include/gdk-pixbuf-2.0 -IE:/cproject/msys64/mingw64/bin/../include/graphene-1.0 -IE:/cproject/msys64/mingw64/bin/../lib/graphene-1.0/include -IE:/untitled2/include
+  OBJECT_DIR = CMakeFiles\untitled2.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled2.dir
+
+build CMakeFiles/untitled2.dir/setIcon.c.obj: C_COMPILER__untitled2_unscanned_Debug E$:/untitled2/setIcon.c || cmake_object_order_depends_target_untitled2
+  DEP_FILE = CMakeFiles\untitled2.dir\setIcon.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IE:/cproject/msys64/mingw64/bin/../include/gtk-4.0 -IE:/cproject/msys64/mingw64/bin/../include/pango-1.0 -IE:/cproject/msys64/mingw64/bin/../include/glib-2.0 -IE:/cproject/msys64/mingw64/bin/../lib/glib-2.0/include -IE:/cproject/msys64/mingw64/bin/../include/harfbuzz -IE:/cproject/msys64/mingw64/bin/../include/freetype2 -IE:/cproject/msys64/mingw64/bin/../include/libpng16 -IE:/cproject/msys64/mingw64/bin/../include/fribidi -IE:/cproject/msys64/mingw64/bin/../include/cairo -IE:/cproject/msys64/mingw64/bin/../include/lzo -IE:/cproject/msys64/mingw64/bin/../include/pixman-1 -IE:/cproject/msys64/mingw64/bin/../include/gdk-pixbuf-2.0 -IE:/cproject/msys64/mingw64/bin/../include/graphene-1.0 -IE:/cproject/msys64/mingw64/bin/../lib/graphene-1.0/include -IE:/untitled2/include
+  OBJECT_DIR = CMakeFiles\untitled2.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled2.dir
+
+build CMakeFiles/untitled2.dir/setMysql.c.obj: C_COMPILER__untitled2_unscanned_Debug E$:/untitled2/setMysql.c || cmake_object_order_depends_target_untitled2
+  DEP_FILE = CMakeFiles\untitled2.dir\setMysql.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -IE:/cproject/msys64/mingw64/bin/../include/gtk-4.0 -IE:/cproject/msys64/mingw64/bin/../include/pango-1.0 -IE:/cproject/msys64/mingw64/bin/../include/glib-2.0 -IE:/cproject/msys64/mingw64/bin/../lib/glib-2.0/include -IE:/cproject/msys64/mingw64/bin/../include/harfbuzz -IE:/cproject/msys64/mingw64/bin/../include/freetype2 -IE:/cproject/msys64/mingw64/bin/../include/libpng16 -IE:/cproject/msys64/mingw64/bin/../include/fribidi -IE:/cproject/msys64/mingw64/bin/../include/cairo -IE:/cproject/msys64/mingw64/bin/../include/lzo -IE:/cproject/msys64/mingw64/bin/../include/pixman-1 -IE:/cproject/msys64/mingw64/bin/../include/gdk-pixbuf-2.0 -IE:/cproject/msys64/mingw64/bin/../include/graphene-1.0 -IE:/cproject/msys64/mingw64/bin/../lib/graphene-1.0/include -IE:/untitled2/include
   OBJECT_DIR = CMakeFiles\untitled2.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled2.dir
 
@@ -64,9 +78,10 @@ build CMakeFiles/untitled2.dir/main.c.obj: C_COMPILER__untitled2_unscanned_Debug
 #############################################
 # Link the executable untitled2.exe
 
-build untitled2.exe: C_EXECUTABLE_LINKER__untitled2_Debug CMakeFiles/untitled2.dir/main.c.obj
+build untitled2.exe: C_EXECUTABLE_LINKER__untitled2_Debug CMakeFiles/untitled2.dir/main.c.obj CMakeFiles/untitled2.dir/setIcon.c.obj CMakeFiles/untitled2.dir/setMysql.c.obj
   FLAGS = -g
-  LINK_LIBRARIES = -lgtk-4  -lpangowin32-1.0  -lpangocairo-1.0  -lpango-1.0  -lharfbuzz  -lgdk_pixbuf-2.0  -lcairo-gobject  -lcairo  -lgraphene-1.0  -lgio-2.0  -lgobject-2.0  -lglib-2.0  -lintl  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -llibmysql  -lgtk-4  -lpangowin32-1.0  -lpangocairo-1.0  -lpango-1.0  -lharfbuzz  -lgdk_pixbuf-2.0  -lcairo-gobject  -lcairo  -lgraphene-1.0  -lgio-2.0  -lgobject-2.0  -lglib-2.0  -lintl  -llibmysql  -lgtk-4  -lpangowin32-1.0  -lpangocairo-1.0  -lpango-1.0  -lharfbuzz  -lgdk_pixbuf-2.0  -lcairo-gobject  -lcairo  -lgraphene-1.0  -lgio-2.0  -lgobject-2.0  -lglib-2.0  -lintl  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_PATH = -LE:/untitled2/lib
   OBJECT_DIR = CMakeFiles\untitled2.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
