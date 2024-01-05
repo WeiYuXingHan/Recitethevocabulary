@@ -19,10 +19,16 @@ link_directories(
 link_libraries(libmysql)
 
 add_executable(untitled2 main.c
-        setIcon.h
-        setIcon.c
         setMysql.h
         setMysql.c
+        readText.h
+        readText.c
+        review.h
+        review.c
+        recite.c
+        recite.h
+        dictation.h
+        dictation.c
 )
 
 target_link_libraries(untitled2 ${GTK4_LIBRARIES} libmysql)

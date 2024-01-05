@@ -1,77 +1,71 @@
+#include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <mysql.h>
-#include <time.h>
-#include <wchar.h>
+#include "review.h"
+#include "recite.h"
+#include "dictation.h"
+#include "readText.h"
 #include <stdlib.h>
-#include "setIcon.h"
 
-#define DEF 12
+GtkWidget *window; //主窗口
 
-//处理点击按钮之后的回调函数
-static void click1_cb(GtkButton *btn, gpointer user_data) {
-    const gchar *s;
-    s = gtk_button_get_label(btn);
-    if (g_strcmp0(s, "Hello.") == 0)
-        gtk_button_set_label(btn, "Good-bye.");
-    else
-        gtk_button_set_label(btn, "Hello.");
+
+void quit_out(GtkButton *button, gpointer user_data) {
+    //用于退出程序的回调函数
+    GtkWindow *window = GTK_WINDOW (user_data);
+    gtk_window_destroy(window);
 }
 
-static void click2_cb(GtkButton *btn, gpointer user_data) {
-    GtkWindow *win = GTK_WINDOW (user_data);
-    gtk_window_destroy(win);
+static void app_activate(GtkApplication *app, gpointer user_data) {
+    GtkBox *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 150);
+    //创建窗口实例
+    window = gtk_application_window_new(app);
+    //设置窗口标题大小
+    gtk_window_set_title(GTK_WINDOW(window), "轻轻松松背单词-首页");
+    gtk_window_set_default_size(GTK_WINDOW(window), 1000, 1000);
+    //添加按钮
+    GtkButton *toRecite = gtk_button_new_with_label("开始背诵单词");
+    GtkButton *toDictation = gtk_button_new_with_label("开始默写单词");
+    GtkButton *toReview = gtk_button_new_with_label("开始复习单词");
+    GtkButton *quit = gtk_button_new_with_label("退出");
+    //设置按钮大小
+    gtk_widget_set_size_request(toRecite, 50, 50);
+    gtk_widget_set_size_request(toDictation, 50, 50);
+    gtk_widget_set_size_request(toReview, 50, 50);
+    gtk_widget_set_size_request(quit, 50, 50);
+    //设置按钮回调
+    g_signal_connect(toRecite, "clicked", G_CALLBACK(goToRecite), NULL);
+    g_signal_connect(toDictation, "clicked", G_CALLBACK(goToDictation), NULL);
+    g_signal_connect(toReview, "clicked", G_CALLBACK(goToReview), NULL);
+    g_signal_connect (quit, "clicked", G_CALLBACK(quit_out), window);
+    //添加主页面label
+    GtkWidget *label = gtk_label_new(
+            "欢迎使用【轻轻松松背    单词】，该项目使用GTK4进行开发。点击【开始背单词】按钮开始使用，点击【退出】按钮退出程序");
+    gtk_widget_set_size_request(label, 80, 150);
+    //添加box子控件
+    gtk_box_append(box, label);
+    gtk_box_append(box, toRecite);
+    gtk_box_append(box, toDictation);
+    gtk_box_append(box, toReview);
+    gtk_box_append(box, quit);
+    gtk_widget_show(box);
+    //展示窗口
+    gtk_window_set_child(GTK_WINDOW(window), box);
+    gtk_widget_show(window);
 }
 
-static void app_activate(GApplication *app, gpointer *user_data) {
-    GtkWidget *win;
-    GtkWidget *box;
-    GtkWidget *label;
-    GtkWidget *btn1;
-    GtkWidget *btn2;
-
-
-    win = gtk_application_window_new(GTK_APPLICATION (app));
-    gtk_window_set_title(GTK_WINDOW (win), "lb4");
-    gtk_window_set_default_size(GTK_WINDOW (win), 1000, 1000);
-
-    box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 5);
-    label = gtk_label_new("欢迎使用【轻轻松松背单词】，该项目使用GTK4进行开发。点击【开始背单词】按钮开始使用，点击【退出】按钮退出程序");
-
-    gtk_box_set_homogeneous(GTK_BOX (box), TRUE);
-    gtk_window_set_child(GTK_WINDOW (win), box);
-
-    btn1 = gtk_button_new_with_label("开始背单词.");
-    g_signal_connect (btn1, "clicked", G_CALLBACK(click1_cb), NULL);
-
-    btn2 = gtk_button_new_with_label("退出");
-    g_signal_connect (btn2, "clicked", G_CALLBACK(click2_cb), win);
-
-    gtk_box_append(GTK_BOX (box), label);
-    gtk_box_append(GTK_BOX (box), btn1);
-    gtk_box_append(GTK_BOX (box), btn2);
-
-    gtk_widget_show(win);
-}
-
-
-int main(int argc, char **argv) {
-
-    //打开单词库txt文件
-    FILE *file = fopen("vocabulary.txt", "r+");
-    // 检查文件是否成功打开
-    if (file == NULL) {
-        perror("无法打开文件");
-        return 1;
-    }
-
-    GtkApplication *app;
+int main(int argc, char *argv[]) {
     int stat;
+    GtkCssProvider *provider = gtk_css_provider_new();
+    GtkApplication *app; // 应用程序
 
-    app = gtk_application_new("com.github.ToshioCP.pr2", G_APPLICATION_FLAGS_NONE);
+    read_and_parse_file("vocabulary.txt");
+    app = gtk_application_new("com.github.ToshioCP.tfv1", G_APPLICATION_FLAGS_NONE);
     g_signal_connect (app, "activate", G_CALLBACK(app_activate), NULL);
-    stat = g_application_run(G_APPLICATION (app), argc, argv);
-    g_object_unref(app);
+    stat = g_application_run(G_APPLICATION (app), argc, argv); //运行程序
+    g_object_unref(app); //释放资源
 
-    fclose(file);
     return stat;
 }
+
+
